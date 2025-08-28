@@ -2,9 +2,11 @@
 
 An educational platform for learning Data Structures & Algorithms through interactive visualizations.
 
+
 **Overview**
 
 AlgoBoard turns abstract DSA concepts into intuitive visual experiences. Explore sorting, searching, trees, heaps, stacks/queues, and hash tables with step-by-step animations, interactive controls, and built-in complexity analysis.
+
 
 **Features**
 
@@ -20,6 +22,7 @@ Stack & Queue → Push/Pop, Enqueue/Dequeue with clear layouts
 
 Hash Table → Division/Multiplication hashing, Linear Probing, Chaining
 
+
 **UI/UX Highlights**
 
 Adjustable array size & animation speed
@@ -30,6 +33,7 @@ Optional audio feedback for operations
 
 Clean and accessible interface
 
+
 **Tech Stack**
 
 Frontend → HTML5, CSS3, JavaScript (ES6+)
@@ -37,3 +41,7 @@ Frontend → HTML5, CSS3, JavaScript (ES6+)
 Architecture → Modular, event-driven, custom animation system
 
 Performance → Optimized DOM updates, efficient data structures, resource cleanup
+
+
+**Live Demo**
+https://algoboard-vm.vercel.app/
