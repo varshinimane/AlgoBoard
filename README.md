@@ -1,10 +1,10 @@
-# AlgoVerse – Interactive DSA Playground
+# AlgoBoard - Algorithms in Action
 
 An educational platform for learning Data Structures & Algorithms through interactive visualizations.
 
 **Overview**
 
-AlgoVerse turns abstract DSA concepts into intuitive visual experiences. Explore sorting, searching, trees, heaps, stacks/queues, and hash tables with step-by-step animations, interactive controls, and built-in complexity analysis.
+AlgoBoard turns abstract DSA concepts into intuitive visual experiences. Explore sorting, searching, trees, heaps, stacks/queues, and hash tables with step-by-step animations, interactive controls, and built-in complexity analysis.
 
 **Features**
 
