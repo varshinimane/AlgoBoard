@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoBoard - Algorithms in Action</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>AlgoBoard</h1>
+                <span class="tagline">Algorithms in Action</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-section="sorting">Sorting</button>
+                <button class="nav-btn" data-section="searching">Searching</button>
+                <button class="nav-btn" data-section="tree">Binary Tree</button>
+                <button class="nav-btn" data-section="heap">Heap</button>
+                <button class="nav-btn" data-section="stack-queue">Stack/Queue</button>
+                <button class="nav-btn" data-section="hash">Hash Table</button>
+            </nav>
+            <div class="theme-controls">
+                <button class="sound-toggle" id="soundToggle">
+                    <span class="sound-icon">🔊</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="main">
+        <!-- Sorting Visualizer -->
+        <section class="visualizer-section active" id="sorting">
+            <div class="container">
+                <div class="visualizer-header">
+                    <h2>Sorting Algorithms</h2>
+                    <p>Visualize how different sorting algorithms work step by step</p>
+                </div>
+                <div class="visualizer-content">
+                    <div class="controls-panel">
+                        <div class="control-group">
+                            <label for="sortingAlgorithm">Algorithm:</label>
+                            <select id="sortingAlgorithm">
+                                <option value="bubble">Bubble Sort</option>
+                                <option value="selection">Selection Sort</option>
+                                <option value="insertion">Insertion Sort</option>
+                                <option value="merge">Merge Sort</option>
+                                <option value="quick">Quick Sort</option>
+                                <option value="heap">Heap Sort</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="arraySize">Array Size: <span id="arraySizeValue">15</span></label>
+                            <input type="range" id="arraySize" min="5" max="30" value="15">
+                        </div>
+                        <div class="control-group">
+                            <label for="animationSpeed">Speed: <span id="speedValue">50</span>ms</label>
+                            <input type="range" id="animationSpeed" min="1" max="100" value="50">
+                        </div>
+                        <div class="control-buttons">
+                            <button id="generateArray" class="btn btn-secondary">Generate New Array</button>
+                            <button id="startSorting" class="btn btn-primary">Start Sorting</button>
+                            <button id="pauseSorting" class="btn btn-warning" disabled>Pause</button>
+                            <button id="resetSorting" class="btn btn-danger">Reset</button>
+                        </div>
+                    </div>
+                    <div class="visualization-area">
+                        <div class="array-container" id="sortingArray"></div>
+                        <div class="status-display" id="sortingStatus">Ready to sort</div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>Algorithm Information</h3>
+                        <div class="algorithm-description" id="sortingDescription">
+                            Select an algorithm to see its description and complexity analysis.
+                        </div>
+                        <div class="complexity-table" id="sortingComplexity"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Searching Visualizer -->
+        <section class="visualizer-section" id="searching">
+            <div class="container">
+                <div class="visualizer-header">
+                    <h2>Searching Algorithms</h2>
+                    <p>Explore linear and binary search algorithms</p>
+                </div>
+                <div class="visualizer-content">
+                    <div class="controls-panel">
+                        <div class="control-group">
+                            <label for="searchAlgorithm">Algorithm:</label>
+                            <select id="searchAlgorithm">
+                                <option value="linear">Linear Search</option>
+                                <option value="binary">Binary Search</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="searchTarget">Search for:</label>
+                            <input type="number" id="searchTarget" placeholder="Enter value">
+                        </div>
+                        <div class="control-group">
+                            <label for="searchSpeed" id="searchSpeedLabel">Speed: 800ms</label>
+                            <input type="range" id="searchSpeed" min="200" max="2000" value="800" step="100">
+                        </div>
+                        <div class="control-buttons">
+                            <button id="generateSearchArray" class="btn btn-secondary">Generate Array</button>
+                            <button id="startSearching" class="btn btn-primary">Start Search</button>
+                            <button id="resetSearching" class="btn btn-danger">Reset</button>
+                        </div>
+                    </div>
+                    <div class="visualization-area">
+                        <div id="searchingArray" class="array-container"></div>
+                        <div id="searchingVariables" class="variables-display"></div>
+                        <div class="status-display" id="searchingStatus">Array generated. Enter a value to search for.</div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>Algorithm Information</h3>
+                        <div class="algorithm-description" id="searchingDescription">
+                            Linear Search checks each element sequentially until the target is found or the end is reached.
+                        </div>
+                        <div class="complexity-table" id="searchingComplexity"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Binary Tree Visualizer -->
+        <section class="visualizer-section" id="tree">
+            <div class="container">
+                <div class="visualizer-header">
+                    <h2>Binary Tree Operations</h2>
+                    <p>Build and traverse binary trees interactively</p>
+                </div>
+                <div class="visualizer-content">
+                    <div class="controls-panel">
+                        <div class="control-group">
+                            <label for="treeValue">Value:</label>
+                            <input type="number" id="treeValue" placeholder="Enter value">
+                        </div>
+                        <div class="control-buttons">
+                            <button id="insertNode" class="btn btn-primary">Insert</button>
+                            <button id="deleteNode" class="btn btn-danger">Delete</button>
+                            <button id="randomTree" class="btn btn-warning">Random Tree</button>
+                            <button id="clearTree" class="btn btn-secondary">Clear Tree</button>
+                        </div>
+                        <div class="traversal-buttons">
+                            <button id="inorderTraversal" class="btn btn-info">Inorder</button>
+                            <button id="preorderTraversal" class="btn btn-info">Preorder</button>
+                            <button id="postorderTraversal" class="btn btn-info">Postorder</button>
+                        </div>
+                    </div>
+                    <div class="visualization-area">
+                        <div class="tree-container" id="treeContainer"></div>
+                        <div class="status-display" id="treeStatus">Tree is empty</div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>Binary Tree Information</h3>
+                        <div class="algorithm-description" id="treeDescription">
+                            A binary tree is a hierarchical data structure where each node has at most two children.
+                        </div>
+                        <div class="complexity-table" id="treeComplexity"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Heap Visualizer -->
+        <section class="visualizer-section" id="heap">
+            <div class="container">
+                <div class="visualizer-header">
+                    <h2>Heap Operations</h2>
+                    <p>Visualize max heap and min heap operations</p>
+                </div>
+                <div class="visualizer-content">
+                    <div class="controls-panel">
+                        <div class="control-group">
+                            <label for="heapType">Heap Type:</label>
+                            <select id="heapType">
+                                <option value="max">Max Heap</option>
+                                <option value="min">Min Heap</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="heapValue">Value:</label>
+                            <input type="number" id="heapValue" placeholder="Enter value">
+                        </div>
+                        <div class="control-buttons">
+                            <button id="insertHeap" class="btn btn-primary">Insert</button>
+                            <button id="deleteRoot" class="btn btn-danger">Delete Root</button>
+                            <button id="randomHeap" class="btn btn-warning">Random Heap</button>
+                            <button id="clearHeap" class="btn btn-secondary">Clear Heap</button>
+                        </div>
+                    </div>
+                    <div class="visualization-area">
+                        <div class="heap-container">
+                            <div class="heap-tree" id="heapTree"></div>
+                            <div class="heap-array" id="heapArray"></div>
+                        </div>
+                        <div class="status-display" id="heapStatus">Heap is empty</div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>Heap Information</h3>
+                        <div class="algorithm-description" id="heapDescription">
+                            A heap is a complete binary tree that satisfies the heap property.
+                        </div>
+                        <div class="complexity-table" id="heapComplexity"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stack & Queue Visualizer -->
+        <section class="visualizer-section" id="stack-queue">
+            <div class="container">
+                <div class="visualizer-header">
+                    <h2>Stack & Queue Operations</h2>
+                    <p>Understand LIFO and FIFO data structures</p>
+                </div>
+                <div class="visualizer-content">
+                    <div class="controls-panel">
+                        <div class="control-group">
+                            <label for="structureType">Structure Type:</label>
+                            <select id="structureType">
+                                <option value="stack">Stack (LIFO)</option>
+                                <option value="queue">Queue (FIFO)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="stackQueueValue">Value:</label>
+                            <input type="text" id="stackQueueValue" placeholder="Enter value">
+                        </div>
+                        
+                        <div class="control-buttons">
+                            <button id="pushEnqueue" class="btn btn-primary">Push</button>
+                            <button id="popDequeue" class="btn btn-danger">Pop</button>
+                            <button id="randomFill" class="btn btn-warning">Random Fill</button>
+                            <button id="clearStructure" class="btn btn-secondary">Clear</button>
+                        </div>
+                        
+                        <div class="status-display" id="structureStatus">Structure is empty. Add elements to see operations.</div>
+                    </div>
+                    
+                    <div class="visualization-area">
+                        <div id="structureVisualization" class="structure-display"></div>
+                        <div id="operationInfo" class="operation-info"></div>
+                    </div>
+                    
+                    <div class="info-panel">
+                        <h3>Structure Information</h3>
+                        <div class="algorithm-description" id="structureDescription">
+                            A stack is a linear data structure that follows the Last In, First Out (LIFO) principle.
+                        </div>
+                        <div class="complexity-table" id="structureComplexity"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hash Table Visualizer -->
+        <section class="visualizer-section" id="hash">
+            <div class="container">
+                <div class="visualizer-header">
+                    <h2>Hash Table Operations</h2>
+                    <p>Explore hash functions and collision handling</p>
+                </div>
+                <div class="visualizer-content">
+                    <div class="controls-panel">
+                        <div class="control-group">
+                            <label for="hashTableSize">Table Size:</label>
+                            <select id="hashTableSize">
+                                <option value="7" selected>7</option>
+                                <option value="11">11</option>
+                                <option value="13">13</option>
+                                <option value="17">17</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="collisionMethod">Collision Handling:</label>
+                            <select id="collisionMethod">
+                                <option value="linear" selected>Linear Probing</option>
+                                <option value="chaining">Chaining</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="hashFunction">Hash Function:</label>
+                            <select id="hashFunction">
+                                <option value="division" selected>Division</option>
+                                <option value="multiplication">Multiplication</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="hashValue">Key:Value (e.g., "5:apple" or "5"):</label>
+                            <input type="text" id="hashValue" placeholder="Enter key:value or just key">
+                        </div>
+                        
+                        <div class="control-buttons">
+                            <button id="insertHash" class="btn btn-primary">Insert</button>
+                            <button id="searchHash" class="btn btn-info">Search</button>
+                            <button id="deleteHash" class="btn btn-danger">Delete</button>
+                            <button id="clearHash" class="btn btn-secondary">Clear</button>
+                        </div>
+                        
+                        <div class="status-display" id="hashTableStatus">Hash table is empty. Insert key-value pairs to see hashing in action.</div>
+                    </div>
+                    
+                    <div class="visualization-area">
+                        <div id="hashTableVisualization" class="hash-table-display"></div>
+                        <div id="hashStatistics" class="hash-statistics"></div>
+                    </div>
+                    
+                    <div class="info-panel">
+                        <h3>Hash Table Information</h3>
+                        <div class="algorithm-description" id="hashTableDescription">
+                            A hash table uses a hash function to map keys to indices in an array. Linear probing resolves collisions by finding the next available slot.
+                        </div>
+                        <div class="complexity-table" id="hashTableComplexity"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AlgoBoard</h3>
+                    <p>Algorithms in Action</p>
+                    <p>Learn, visualize, and master DSA concepts through hands-on interaction.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>6 Interactive Visualizers</li>
+                        <li>Real-time Algorithm Animation</li>
+                        <li>Educational Content</li>
+                        <li>Mobile-Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Algorithms</h4>
+                    <ul>
+                        <li>Sorting & Searching</li>
+                        <li>Binary Trees & Heaps</li>
+                        <li>Stacks & Queues</li>
+                        <li>Hash Tables</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Built with modern web technologies for an engaging learning experience.</p>
+                    <p>Perfect for students, educators, and programming enthusiasts.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AlgoBoard - Algorithms in Action.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
